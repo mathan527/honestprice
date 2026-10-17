@@ -1,0 +1,6 @@
+__pycache__/
+.pytest_cache/
+.vercel/
+web/.vercel/
+.env.local
+web/.env.local

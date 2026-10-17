@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HonestPrice</title>
+<meta name="description" content="Used-car valuation with calibrated error bars, built on CART, bagging, AdaBoost, gradient boosting, Bayesian model averaging and stacking.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="mark">&#8377;</span> Honest<b>Price</b></div>
+  <nav id="nav" aria-label="Sections">
+    <button data-tab="value" class="on">Valuation</button>
+    <button data-tab="boost">Boosting lab</button>
+    <button data-tab="trees">Tree explorer</button>
+    <button data-tab="evidence">Evidence</button>
+    <button data-tab="method">Method</button>
+  </nav>
+</header>
+<main>
+  <div id="loading" class="note">Loading models&hellip;</div>
+
+  <section id="value" class="tab on">
+    <h2>What is this car worth, and how sure are we?</h2>
+    <p class="lead">A council of tree-based models values the car and places it in a price tier. The price comes with a <b>90% interval calibrated by conformal prediction</b>, so the error bars are tested on held-out cars rather than assumed.</p>
+    <div class="split">
+      <form class="card" id="form" onsubmit="return false">
+        <h3>Car details</h3>
+        <label>Quick example <select id="ex"></select></label>
+        <div class="row2"><label>Brand <select id="brand"></select></label><label>Model <select id="model"></select></label></div>
+        <label>Variant <select id="variant"></select></label>
+        <div class="row2"><label>Year of manufacture <input type="number" id="year" min="1992" max="2020" value="2014"></label>
+          <label>Kilometres driven <input type="number" id="km" min="0" max="800000" step="1000" value="60000"></label></div>
+        <div class="row2"><label>Fuel <select id="fuel"><option>Petrol</option><option>Diesel</option><option>CNG</option><option>LPG</option></select></label>
+          <label>Transmission <select id="trans"><option>Manual</option><option>Automatic</option></select></label></div>
+        <div class="row2"><label>Seller <select id="seller"><option>Individual</option><option>Dealer</option><option>Trustmark Dealer</option></select></label>
+          <label>Owner <select id="owner"><option>First Owner</option><option>Second Owner</option><option>Third Owner</option><option>Fourth &amp; Above Owner</option></select></label></div>
+        <p class="note">Model data covers 1992&ndash;2020 listings in India. Predictions outside that range are extrapolation.</p>
+      </form>
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <section id="boost" class="tab"></section>
+  <section id="trees" class="tab"></section>
+  <section id="evidence" class="tab"></section>
+  <section id="method" class="tab"></section>
+</main>
+<footer>HonestPrice &middot; ML Unit 5 &middot; Decision support from historical listings, not a formal valuation.</footer>
+<script src="model.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
